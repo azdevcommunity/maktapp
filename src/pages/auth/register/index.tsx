@@ -1,108 +1,98 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 
 const Register = () => {
   return (
-    <div className="bg-white shadow-md rounded-lg p-8">
-      <h1 className="text-3xl font-bold mb-6 text-center">Register</h1>
+    <>
+      <div className="mb-8 text-center">
+        <h1 className="text-3xl font-bold mb-2">Məktəb qeydiyyatı</h1>
+        <p className="text-slate-600">Xoş gəlmisiniz! Zəhmət olmasa məlumatları daxil edin</p>
+      </div>
       
-      <form className="space-y-6">
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <label htmlFor="firstName" className="block text-sm font-medium mb-1">
-              First Name
-            </label>
-            <input
-              id="firstName"
-              type="text"
-              className="w-full px-4 py-2 border rounded-md"
-              placeholder="John"
-              required
-            />
-          </div>
-          
-          <div>
-            <label htmlFor="lastName" className="block text-sm font-medium mb-1">
-              Last Name
-            </label>
-            <input
-              id="lastName"
-              type="text"
-              className="w-full px-4 py-2 border rounded-md"
-              placeholder="Doe"
-              required
-            />
-          </div>
+      <form className="space-y-6 mb-5">
+        <div className="space-y-2">
+          <Label htmlFor="schoolOwnership">Məktəbin mülkiyyət formasını seç</Label>
+          <Select>
+            <SelectTrigger className="w-full focus-visible:border-brand-500 focus-visible:ring-brand-500 focus-visible:ring-2" id="schoolOwnership">
+              <SelectValue placeholder="Özəl" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="private">Özəl</SelectItem>
+              <SelectItem value="public">Dövlət</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
         
-        <div>
-          <label htmlFor="email" className="block text-sm font-medium mb-1">
-            Email
-          </label>
-          <input
+        <div className="space-y-2">
+          <Label htmlFor="schoolName">Məktəbin adı</Label>
+          <Input
+            id="schoolName"
+            type="text"
+            placeholder="Məktəb adı"
+            required
+            className='focus-visible:border-brand-500 focus-visible:ring-brand-500 focus-visible:ring-2'
+          />
+        </div>
+        
+        <div className="space-y-2">
+          <Label htmlFor="representative">Nümayəndə</Label>
+          <Input
+            id="representative"
+            type="text"
+            placeholder="Ad və soyadı"
+            required
+            className='focus-visible:border-brand-500 focus-visible:ring-brand-500 focus-visible:ring-2'
+          />
+        </div>
+        
+        <div className="space-y-2">
+          <Label htmlFor="email">E-mail</Label>
+          <Input
             id="email"
             type="email"
-            className="w-full px-4 py-2 border rounded-md"
-            placeholder="your@email.com"
+            placeholder="Email adresi"
             required
+            className='focus-visible:border-brand-500 focus-visible:ring-brand-500 focus-visible:ring-2'
           />
         </div>
         
-        <div>
-          <label htmlFor="password" className="block text-sm font-medium mb-1">
-            Password
-          </label>
-          <input
-            id="password"
-            type="password"
-            className="w-full px-4 py-2 border rounded-md"
-            placeholder="••••••••"
+        <div className="space-y-2">
+          <Label htmlFor="phone">Telefon nömrə</Label>
+          <Input
+            id="phone"
+            type="tel"
+            placeholder="Telefon nömrəsi"
             required
+            className='focus-visible:border-brand-500 focus-visible:ring-brand-500 focus-visible:ring-2'
           />
         </div>
         
-        <div>
-          <label htmlFor="confirmPassword" className="block text-sm font-medium mb-1">
-            Confirm Password
-          </label>
-          <input
-            id="confirmPassword"
-            type="password"
-            className="w-full px-4 py-2 border rounded-md"
-            placeholder="••••••••"
-            required
-          />
-        </div>
-        
-        <div className="flex items-center">
-          <input
-            id="terms"
-            type="checkbox"
-            className="h-4 w-4 border rounded"
-            required
-          />
-          <label htmlFor="terms" className="ml-2 text-sm">
-            I agree to the{' '}
-            <Link to="/terms" className="text-blue-600 hover:underline">
-              Terms and Conditions
-            </Link>
-          </label>
-        </div>
-        
-        <button
+        <Button
           type="submit"
-          className="w-full py-2 px-4 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+          className="w-full bg-brand-500 hover:bg-brand-600"
         >
-          Create Account
-        </button>
+          Qeydiyyatdan keç
+        </Button>
+
+        <Button
+          type="button"
+          variant="outline"
+          className="w-full border-slate-300"
+        >
+          Daxil ol
+        </Button>
       </form>
-      
-      <p className="mt-4 text-center text-sm">
-        Already have an account?{' '}
-        <Link to="/auth/login" className="text-blue-600 hover:underline">
-          Login
-        </Link>
-      </p>
-    </div>
+    </>
   );
 };
 
