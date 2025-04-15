@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -12,6 +11,7 @@ import {
 } from "@/components/ui/select"
 
 const Register = () => {
+  const navigate = useNavigate();
   return (
     <>
       <div className="mb-8 text-center">
@@ -88,6 +88,7 @@ const Register = () => {
           type="button"
           variant="outline"
           className="w-full border-slate-300"
+          onClick={() => navigate('/login')}
         >
           Daxil ol
         </Button>

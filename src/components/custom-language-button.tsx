@@ -1,11 +1,28 @@
 import { Button, type ButtonProps } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
+import { ChevronDown } from "lucide-react"
 
 interface LanguageButtonProps extends ButtonProps {
   language: string
+  isMobile?: boolean
 }
 
-export function LanguageButton({ language, className, ...props }: LanguageButtonProps) {
+export function LanguageButton({ language, className, isMobile = false, ...props }: LanguageButtonProps) {
+  if (isMobile) {
+    return (
+      <Button
+        variant="ghost"
+        className={cn(
+          "flex items-center rounded-md px-2 py-1 text-white !hover:bg-transparent text-md !gap-0",
+          className,
+        )}
+        {...props}
+      >
+        {language} <ChevronDown className=" !h-6 !w-6" />
+      </Button>
+    )
+  }
+
   return (
     <Button
       variant="outline"

@@ -13,21 +13,22 @@ module.exports = {
   			sm: 'calc(var(--radius) - 4px)'
   		},
   		colors: {
-			"brand": {
-				"900": "#044342",
-				"800": "#065C5A",
-				"700": "#087571",
-				"600": "#098D88",
-				"500": "#0AA89E",
-				"400": "#47C2B7",
-				"300": "#8DDAD5",
-				"200": "#B3E7E3",
-				"100": "#D9F3F1",
-			},
-			"gray": {
-				"900": "#161B26",
-				"700": "#333741",
-			},
+  			'brand': {
+  				'900': '#044342',
+  				'800': '#065C5A',
+  				'700': '#087571',
+  				'600': '#098D88',
+  				'500': '#0AA89E',
+  				'400': '#47C2B7',
+  				'300': '#8DDAD5',
+  				'200': '#B3E7E3',
+  				'100': '#D9F3F1'
+  			},
+  			'gray': {
+  				'900': '#161B26',
+				'800': '#1F242F',
+  				'700': '#333741'
+  			},
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
@@ -67,6 +68,16 @@ module.exports = {
   				'3': 'hsl(var(--chart-3))',
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
+  			},
+  			sidebar: {
+  				DEFAULT: 'hsl(var(--sidebar-background))',
+  				foreground: 'hsl(var(--sidebar-foreground))',
+  				primary: 'hsl(var(--sidebar-primary))',
+  				'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
+  				accent: 'hsl(var(--sidebar-accent))',
+  				'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
+  				border: 'hsl(var(--sidebar-border))',
+  				ring: 'hsl(var(--sidebar-ring))'
   			}
   		}
   	}

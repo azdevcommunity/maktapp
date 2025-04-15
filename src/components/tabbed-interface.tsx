@@ -30,7 +30,7 @@ const tabs: Tab[] = [
       },
       description:
         "Daily monitoring allows management to monitor the teacher's lesson plan, the teaching resources to be used in the lesson, teaching methods, assigned tasks and student attendance, improving the quality of teaching and creating an environment of transparency.",
-      image: "/daily_monitoring.svg",
+      image: "/infosections/daily_monitoring.svg",
     },
   },
   {
@@ -39,11 +39,11 @@ const tabs: Tab[] = [
     content: {
       title: "Statistics",
       warning: {
-        text: "Limited access to historical data",
+        text: "Inefficient administrative processes:",
       },
       description:
-        "The statistics module provides comprehensive analytics on various aspects of the educational process, including attendance rates, assignment completion, and overall performance metrics, enabling data-driven decision making.",
-      image: "/daily_monitoring.svg",
+        "LMS can simplify administrative processes such as record keeping, grading, and communication between teachers, students, and parents. It can save schools time and resources and improve overall efficiency",
+      image: "/infosections/statistics.svg",
     },
   },
   {
@@ -56,20 +56,20 @@ const tabs: Tab[] = [
       },
       description:
         "An LMS can provide detailed analytics on student performance, allowing teachers to identify strengths and weaknesses and tailor instruction accordingly. This can help ensure that students receive the support they need to succeed.",
-      image: "/daily_monitoring.svg",
+      image: "/infosections/class_performance.svg",
     },
   },
   {
     id: "timetable",
-    label: "Timetable",
+    label: "Teacher's timetable",
     content: {
-      title: "Timetable",
+      title: "Teacher's timetable",
       warning: {
-        text: "Schedule changes require approval",
+        text: "Limited access to professional development",
       },
       description:
-        "The timetable feature allows for efficient scheduling of classes, ensuring optimal use of resources and time. Teachers and students can easily access their schedules, reducing confusion and improving attendance.",
-      image: "/daily_monitoring.svg",
+        "An LMS can provide teachers with access to ongoing professional development and training opportunities, regardless of their location. This can help to improve the quality of teaching and enhance teacher skills, ultimately leading to better learning outcomes for students.",
+      image: "/infosections/timetable.svg",
     },
   },
   {
@@ -78,24 +78,24 @@ const tabs: Tab[] = [
     content: {
       title: "Thematic plan",
       warning: {
-        text: "Plans must align with curriculum standards",
+        text: "Limited access to teaching resources for teachers reduces the quality of teaching, creating a resource gap",
       },
       description:
-        "Thematic planning enables teachers to organize their curriculum around central themes, creating cohesive learning experiences that connect different subjects and concepts for deeper understanding.",
-      image: "/daily_monitoring.svg",
+        "The ability of a teacher to share teaching resources with other teachers, creating a wealth of resources, improves the quality of teaching and gives teachers experience",
+      image: "/infosections/thematic_plan.svg",
     },
   },
   {
     id: "performance",
-    label: "Performance",
+    label: "Student performance",
     content: {
-      title: "Performance",
+      title: "Student performance",
       warning: {
-        text: "Performance metrics are updated weekly",
+        text: "Passive participation of parents in the educational process",
       },
       description:
-        "The performance module tracks student achievement across various metrics, providing insights into individual and class progress, helping teachers identify areas for improvement and celebrate successes.",
-      image: "/daily_monitoring.svg",
+        "LMS provides real-time updates on students' academic performance and improves communication with teachers. This feature opens the door to effective collaboration, allowing parents to actively participate in their students' learning process.",
+      image: "/infosections/student_performance.svg",
     },
   },
 ]
@@ -211,14 +211,24 @@ export default function TabbedInterface() {
             {/* Description */}
             <p className="text-center text-gray-700 mb-6 max-w-2xl mx-auto">{activeTabContent.description}</p>
 
-            {/* Image */}
+            {/* Image within MacBook Mockup */}
             <div className="flex justify-center">
-              <div className="relative w-full max-w-xl aspect-[4/3]">
+              {/* Container for mockup and content */}
+              <div className="relative w-full max-w-3xl aspect-[16/10]"> {/* Adjust max-w and aspect ratio as needed */}
+                {/* MacBook Mockup Image (as background or foreground) */}
                 <img
-                  src={activeTabContent.image || "/placeholder.svg"}
-                  alt={activeTabContent.title}
-                  className="object-contain"
+                  src="/daily_monitoring.svg" // Make sure this path is correct
+                  alt="MacBook Mockup"
+                  className="absolute inset-0 w-full h-full object-contain z-0" // Use object-contain or object-cover
                 />
+                {/* Content Image positioned inside the mockup screen */}
+                <div className="absolute inset-0 flex items-center justify-center z-10 p-[6%] pt-[10px] ml-1 lg:p-[6%] lg:pt-5 md:p-[6%] md:pt-5"> {/* Adjust padding based on mockup's screen bezel */}
+                  <img
+                    src={activeTabContent.image || "/auth_carousel_1.png"}
+                    alt={activeTabContent.title}
+                    className="object-contain w-full h-full" // Make content image fill the padded area
+                  />
+                </div>
               </div>
             </div>
           </div>

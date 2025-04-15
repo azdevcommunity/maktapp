@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -7,6 +7,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 
 const Login = () => {
   const [rememberMe, setRememberMe] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <>
@@ -68,6 +69,7 @@ const Login = () => {
           type="button"
           variant="outline"
           className="w-full border-slate-300"
+          onClick={() => navigate('/register')}
         >
           Məktəb qeydiyyatı
         </Button>
