@@ -1,6 +1,4 @@
-export const API_BASE_URL = import.meta.env.PROFILE === 'prod' 
-  ? 'https://api-demo.maktapp.az'  
-  : '';
+export const API_BASE_URL = 'https://api-demo.maktapp.az';
 
 export const endpoints = {
   auth: {

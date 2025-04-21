@@ -6,12 +6,21 @@ export const authApiSlice = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({ 
     baseUrl: API_BASE_URL,
+    fetchFn: (input, init) => {
+      return fetch(input, {
+        ...init,
+        mode: 'cors',
+        credentials: 'include',
+      });
+    },
     prepareHeaders: (headers, { getState }) => {
       const token = (getState() as any).auth?.token;
       
       if (token) {
         headers.set('authorization', `Bearer ${token}`);
       }
+      
+      headers.set('Content-Type', 'application/json');
       return headers;
     },
   }),
