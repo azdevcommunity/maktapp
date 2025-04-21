@@ -4,10 +4,30 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
+import { useLoginMutation } from '@/api/slices/auth/AuthApiSlice';
+import { useDispatch } from 'react-redux';
+import { loginSuccess, loginFailure } from '@/api/slices/auth/AuthSlice';
 
 const Login = () => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  
+  const [login, { isLoading }] = useLoginMutation();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    try {
+      const response = await login({ username, password }).unwrap();
+      dispatch(loginSuccess(response));
+      navigate('/dashboard');
+    } catch (error) {
+      dispatch(loginFailure(error instanceof Error ? error.message : 'Login failed'));
+    }
+  };
 
   return (
     <>
@@ -16,14 +36,17 @@ const Login = () => {
         <p className="text-slate-600">Xoş gəlmisiniz! Zəhmət olmasa məlumatları daxil edin</p>
       </div>
 
-      <form className="space-y-6">
+      <form className="space-y-6" onSubmit={handleSubmit}>
         <div className="space-y-2">
           <Label htmlFor="username">İstifadəçi adı</Label>
           <Input 
             id="username" 
             type="text" 
             placeholder="İstifadəçi adınız" 
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             className='focus-visible:border-brand-500 focus-visible:ring-brand-500 focus-visible:ring-2'
+            required
           />
         </div>
         
@@ -33,7 +56,10 @@ const Login = () => {
             id="password" 
             type="password" 
             placeholder="Şifrəniz" 
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             className='focus-visible:border-brand-500 focus-visible:ring-brand-500 focus-visible:ring-2'
+            required
           />
         </div>
         
@@ -61,8 +87,9 @@ const Login = () => {
         <Button
           type="submit"
           className="w-full bg-brand-500 hover:bg-brand-600"
+          disabled={isLoading}
         >
-          Daxil ol
+          {isLoading ? 'Yüklənir...' : 'Daxil ol'}
         </Button>
 
         <Button
