@@ -2,6 +2,10 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { API_BASE_URL, endpoints } from '@/api/config';
 import { LoginRequest, LoginResponse } from '@/api/models/AuthApiModel';
 
+// Determine if credentials should be 'include' (development) or 'same-origin' (production)
+// Using 'include' in production can cause CORS issues when the domains differ
+const credentialsMode = import.meta.env.PROD ? 'same-origin' : 'include';
+
 export const authApiSlice = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({ 
@@ -10,7 +14,7 @@ export const authApiSlice = createApi({
       return fetch(input, {
         ...init,
         mode: 'cors',
-        credentials: 'include',
+        credentials: credentialsMode,
       });
     },
     prepareHeaders: (headers, { getState }) => {
@@ -21,6 +25,7 @@ export const authApiSlice = createApi({
       }
       
       headers.set('Content-Type', 'application/json');
+      headers.set('Accept', 'application/json');
       return headers;
     },
   }),

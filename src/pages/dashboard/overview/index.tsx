@@ -1,42 +1,126 @@
+import { StatsCard } from "@/components/stats-card";
+import { Button } from "@/components/ui/button";
+import { Switch } from "@/components/ui/switch";
+import { useState } from "react";
+import { Calendar, Filter} from "lucide-react";
+import RefreshIcon from "@/components/icons/RefreshIcon";
+import FilterIcon from "@/components/icons/FilterIcon";
+import CalendarIcon from "@/components/icons/CalendarIcon";
 
 const DashboardOverview = () => {
+  const [showCharts, setShowCharts] = useState(true);
+
   return (
     <div>
-      <h1 className="text-3xl font-bold mb-6">Dashboard Overview</h1>
-      
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <div className="bg-white p-6 rounded-lg shadow-sm border">
-          <h3 className="text-lg font-medium mb-2">Students</h3>
-          <p className="text-3xl font-bold">1,234</p>
-        </div>
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-2xl font-semibold">Daily monitoring : 15.05.2025</h1>
         
-        <div className="bg-white p-6 rounded-lg shadow-sm border">
-          <h3 className="text-lg font-medium mb-2">Teachers</h3>
-          <p className="text-3xl font-bold">56</p>
-        </div>
-        
-        <div className="bg-white p-6 rounded-lg shadow-sm border">
-          <h3 className="text-lg font-medium mb-2">Classes</h3>
-          <p className="text-3xl font-bold">78</p>
+        <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
+            <span className="text-sm font-medium">Show charts</span>
+            <Switch checked={showCharts} onCheckedChange={setShowCharts} className="data-[state=checked]:!bg-green !shadow-none"/>
+          </div>
+          
+          <Button variant="outline" size="sm" className="flex items-center gap-1 font-medium">
+            <CalendarIcon className="h-4 w-4" />
+            Today
+          </Button>
+          
+          <Button variant="outline" size="sm" className="flex items-center gap-1 font-medium">
+            <FilterIcon className="h-4 w-4" />
+            Filter
+          </Button>
+          
+          <Button variant="outline" size="sm" className="flex items-center gap-1 font-medium">
+            <RefreshIcon className="h-4 w-4" />
+            Refresh
+          </Button>
+          
+          <Button variant="default" size="sm" className="bg-brand-500 hover:bg-brand-600 font-medium">
+            Attendance
+          </Button>
         </div>
       </div>
-      
-      <div className="bg-white p-6 rounded-lg shadow-sm border mb-8">
-        <h2 className="text-xl font-semibold mb-4">Recent Activity</h2>
-        <ul className="space-y-3">
-          <li className="border-b pb-3">
-            <p className="font-medium">New student registration</p>
-            <p className="text-gray-600 text-sm">Today, 10:23 AM</p>
-          </li>
-          <li className="border-b pb-3">
-            <p className="font-medium">Class schedule updated</p>
-            <p className="text-gray-600 text-sm">Yesterday, 4:45 PM</p>
-          </li>
-          <li className="border-b pb-3">
-            <p className="font-medium">New teacher joined</p>
-            <p className="text-gray-600 text-sm">Yesterday, 11:30 AM</p>
-          </li>
-        </ul>
+
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6">
+        <StatsCard
+          title="All school"
+          leftSection={{
+            title: "Lesson",
+            percentage: 96,
+            stats: [
+              { label: "Scheduled lessons", value: 99, color: "primary" },
+              { label: "Completed lessons", value: 92, color: "primary" },
+            ],
+          }}
+          rightSection={{
+            title: "Attendance",
+            percentage: 88,
+            stats: [
+              { label: "Quanity of students", value: 317, color: "secondary" },
+              { label: "Participating students", value: 216, color: "secondary" },
+            ],
+          }}
+        />
+
+        <StatsCard
+          title="Primary school"
+          leftSection={{
+            title: "Lesson",
+            percentage: 96,
+            stats: [
+              { label: "Scheduled lessons", value: 99, color: "primary" },
+              { label: "Completed lessons", value: 92, color: "primary" },
+            ],
+          }}
+          rightSection={{
+            title: "Attendance",
+            percentage: 88,
+            stats: [
+              { label: "Quanity of students", value: 317, color: "secondary" },
+              { label: "Participating students", value: 216, color: "secondary" },
+            ],
+          }}
+        />
+        <StatsCard
+          title="Secondary school"
+          leftSection={{
+            title: "Lesson",
+            percentage: 96,
+            stats: [
+              { label: "Scheduled lessons", value: 99, color: "primary" },
+              { label: "Completed lessons", value: 92, color: "primary" },
+            ],
+          }}
+          rightSection={{
+            title: "Attendance",
+            percentage: 88,
+            stats: [
+              { label: "Quanity of students", value: 317, color: "secondary" },
+              { label: "Participating students", value: 216, color: "secondary" },
+            ],
+          }}
+        />
+        <StatsCard
+          title="High school"
+          leftSection={{
+            title: "Lesson",
+            percentage: 96,
+            stats: [
+              { label: "Scheduled lessons", value: 99, color: "primary" },
+              { label: "Completed lessons", value: 92, color: "primary" },
+            ],
+          }}
+          rightSection={{
+            title: "Attendance",
+            percentage: 88,
+            stats: [
+              { label: "Quanity of students", value: 317, color: "secondary" },
+              { label: "Participating students", value: 216, color: "secondary" },
+            ],
+          }}
+        />
+
       </div>
     </div>
   );

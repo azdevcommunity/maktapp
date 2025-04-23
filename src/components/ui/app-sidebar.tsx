@@ -12,12 +12,10 @@ import {
     SidebarMenu,
     SidebarMenuButton,
     SidebarMenuItem,
-    SidebarRail,
 } from "@/components/ui/sidebar"
 import { cn } from "@/lib/utils"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 
-// Menu items data
 const educationItems = [
   {
     title: "Daily monitoring",
@@ -78,123 +76,184 @@ const managementItems = [
   },
 ]
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  const [educationOpen, setEducationOpen] = React.useState(true)
-  const [managementOpen, setManagementOpen] = React.useState(false)
+type AppSidebarProps = React.ComponentProps<typeof Sidebar> & {
+  collapsed?: boolean;
+  onToggle?: () => void;
+};
+
+export function AppSidebar({ collapsed = true, onToggle, ...props }: AppSidebarProps) {
+  const [educationOpen, setEducationOpen] = React.useState(true);
+  const [managementOpen, setManagementOpen] = React.useState(false);
   const location = useLocation()
 
-  // Check if item is active based on current pathname
   const isActive = (url: string) => {
     return location.pathname === url
   }
 
   return (
-    <Sidebar {...props} className="border-r ">
-      <SidebarHeader className="flex flex-row items-center justify-center py-6 space-x-2 !bg-[#FCFCFD]">
-        <img src="/logo.svg" alt="E-Maktapp" className="w-10 h-10" />
-        <div className="text-2xl font-semibold text-gray-800">E-Maktapp</div>
-      </SidebarHeader>
-      <SidebarContent className="!bg-[#FCFCFD]">
-        <Collapsible
-          open={educationOpen}
-          onOpenChange={setEducationOpen}
-          className="w-full transition-all duration-200 ease-in-out"
-        >
-          <SidebarGroup>
-            <CollapsibleTrigger asChild>
-              <SidebarGroupLabel className="flex cursor-pointer items-center justify-between py-3 text-md font-medium hover:bg-gray-100 text-gray-800 rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-opacity-50">
-                <span className="flex items-center gap-2">
-                  <span>Education</span>
-                </span>
-                <span className="transition-transform duration-200">
-                  {educationOpen ? <ChevronUp className="h-5 w-5" /> : <ChevronDown className="h-5 w-5" />}
-                </span>
-              </SidebarGroupLabel>
-            </CollapsibleTrigger>
-            <CollapsibleContent className="animate-accordion-down">
-              <SidebarGroupContent>
-                <SidebarMenu>
-                  {educationItems.map((item) => (
-                    <SidebarMenuItem key={item.title}>
-                      <SidebarMenuButton
-                        asChild
-                        isActive={isActive(item.url)}
-                        className={cn(
-                          "my-1 py-3",
-                          isActive(item.url) && "!bg-brand-500 !hover:bg-brand-600 !text-white rounded-xl",
-                          !isActive(item.url) && "hover:!bg-brand-100"
-                        )}
-                      >
-                        <Link to={item.url} className="flex items-center gap-2">
-                          <span className={cn(item.icon, "mr-2 inline-block h-5 w-5")}>
-                            {item.title === "Daily monitoring" && <BuildingIcon />}
-                            {item.title === "Statistics" && <StatisticsIcon />}
-                            {item.title === "Timetable" && <TimetableIcon />}
-                            {item.title === "Classes" && <ClassesIcon />}
-                            {item.title === "Journal" && <JournalIcon />}
-                            {item.title === "Report" && <ReportIcon />}
-                            {item.title === "Announcements" && <AnnouncementsIcon />}
-                          </span>
-                          <span>{item.title}</span>
-                        </Link>
-                      </SidebarMenuButton>
-                    </SidebarMenuItem>
-                  ))}
-                </SidebarMenu>
-              </SidebarGroupContent>
-            </CollapsibleContent>
-          </SidebarGroup>
-        </Collapsible>
+    <Sidebar {...props} className={cn(
+      "border-r transition-all duration-300 ease-in-out relative",
+      collapsed ? "min-w-[70px] w-[70px]" : "min-w-[250px] w-[250px]"
+    )}>
+      <button 
+        onClick={onToggle}
+        aria-label="Toggle Sidebar" 
+        title="Toggle Sidebar"
+        className={`absolute inset-y-0 z-20 hidden w-4 -right-4 -translate-x-1/2 transition-all ease-linear 
+                 after:absolute after:inset-y-0 after:left-1/2 after:w-[2px] hover:after:bg-gray-300
+                 sm:flex ${collapsed ? 'cursor-e-resize' : 'cursor-w-resize'}`}
+      ></button>
 
-        <Collapsible
-          open={managementOpen}
-          onOpenChange={setManagementOpen}
-          className="w-full transition-all duration-200 ease-in-out"
-        >
-          <SidebarGroup>
-            <CollapsibleTrigger asChild>
-              <SidebarGroupLabel className="flex cursor-pointer items-center justify-between py-3 text-md font-medium hover:bg-gray-100 text-gray-800 rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-opacity-50">
-                <span className="flex items-center gap-2">
-                  <span>Management</span>
-                </span>
-                <span className="transition-transform duration-200">
-                  {managementOpen ? <ChevronUp className="h-5 w-5" /> : <ChevronDown className="h-5 w-5" />}
-                </span>
-              </SidebarGroupLabel>
-            </CollapsibleTrigger>
-            <CollapsibleContent className="animate-accordion-down">
-              <SidebarGroupContent>
-                <SidebarMenu>
-                  {managementItems.map((item) => (
-                    <SidebarMenuItem key={item.title}>
-                      <SidebarMenuButton asChild className={cn(
-                          "my-1 py-3",
-                          isActive(item.url) && "!bg-brand-500 !hover:bg-brand-600 !text-white rounded-xl",
-                          !isActive(item.url) && "hover:!bg-brand-100"
-                        )}>
-                        <Link to={item.url} className="flex items-center gap-2">
-                          <span className={cn(item.icon, "mr-2 inline-block h-5 w-5")}>
-                            {item.title === "Contact" && <ContactIcon />}
-                            {item.title === "Note" && <NoteIcon />}
-                            {item.title === "Agenda" && <AgendaIcon />}
-                          </span>
-                          <span>{item.title}</span>
-                        </Link>
-                      </SidebarMenuButton>
-                    </SidebarMenuItem>
-                  ))}
-                </SidebarMenu>
-              </SidebarGroupContent>
-            </CollapsibleContent>
-          </SidebarGroup>
-        </Collapsible>
-      </SidebarContent>
-      <SidebarRail />
+      <SidebarHeader className="!bg-[#FCFCFD] py-6 flex flex-row items-center justify-start px-4">
+        <img src="/logo.svg" alt="Maktapp" className="w-10 h-10 flex-shrink-0" />
+        <div className="text-2xl font-semibold text-gray-800 ml-2 overflow-hidden whitespace-nowrap transition-all duration-300">
+          E-Maktapp
+        </div>
+      </SidebarHeader>
+
+      {collapsed ? (
+        <SidebarContent className="!bg-[#FCFCFD] w-full">
+          <div className="flex flex-col items-center space-y-3 mt-6">
+            {educationItems.map((item) => (
+              <Link 
+                key={item.title} 
+                to={item.url} 
+                className={cn(
+                  "w-12 h-10 flex items-center justify-center rounded-lg",
+                  isActive(item.url) ? "bg-brand-500 text-white" : "text-gray-600 hover:bg-brand-100"
+                )}
+                title={item.title}
+              >
+                {item.title === "Daily monitoring" && <BuildingIcon />}
+                {item.title === "Statistics" && <StatisticsIcon />}
+                {item.title === "Timetable" && <TimetableIcon />}
+                {item.title === "Classes" && <ClassesIcon />}
+                {item.title === "Journal" && <JournalIcon />}
+                {item.title === "Report" && <ReportIcon />}
+                {item.title === "Announcements" && <AnnouncementsIcon />}
+              </Link>
+            ))}
+            
+            <div className="w-10 h-[1px] bg-gray-200 my-2"></div>
+            
+            {managementItems.map((item) => (
+              <Link 
+                key={item.title} 
+                to={item.url} 
+                className={cn(
+                  "w-12 h-10 flex items-center justify-center rounded-lg",
+                  isActive(item.url) ? "bg-brand-500 text-white" : "text-gray-600 hover:bg-brand-100"
+                )}
+                title={item.title}
+              >
+                {item.title === "Contact" && <ContactIcon />}
+                {item.title === "Note" && <NoteIcon />}
+                {item.title === "Agenda" && <AgendaIcon />}
+              </Link>
+            ))}
+          </div>
+        </SidebarContent>
+      ) : (
+        <SidebarContent className="!bg-[#FCFCFD]">
+          <Collapsible
+            open={educationOpen}
+            onOpenChange={setEducationOpen}
+            className="w-full transition-all duration-200 ease-in-out"
+          >
+            <SidebarGroup>
+              <CollapsibleTrigger asChild>
+                <SidebarGroupLabel className="flex cursor-pointer items-center justify-between py-3 text-md font-medium hover:bg-gray-100 text-gray-800 rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-opacity-50">
+                  <span className="flex items-center gap-2">
+                    <span>Education</span>
+                  </span>
+                  <span className="transition-transform duration-200">
+                    {educationOpen ? <ChevronUp className="h-5 w-5" /> : <ChevronDown className="h-5 w-5" />}
+                  </span>
+                </SidebarGroupLabel>
+              </CollapsibleTrigger>
+              <CollapsibleContent className="animate-accordion-down">
+                <SidebarGroupContent>
+                  <SidebarMenu>
+                    {educationItems.map((item) => (
+                      <SidebarMenuItem key={item.title}>
+                        <SidebarMenuButton
+                          asChild
+                          isActive={isActive(item.url)}
+                          className={cn(
+                            "my-1 py-3",
+                            isActive(item.url) && "!bg-brand-500 !hover:bg-brand-600 !text-white rounded-xl",
+                            !isActive(item.url) && "hover:!bg-brand-100"
+                          )}
+                        >
+                          <Link to={item.url} className="flex items-center gap-2">
+                            <span className={cn("mr-2 inline-block h-5 w-5")}>
+                              {item.title === "Daily monitoring" && <BuildingIcon />}
+                              {item.title === "Statistics" && <StatisticsIcon />}
+                              {item.title === "Timetable" && <TimetableIcon />}
+                              {item.title === "Classes" && <ClassesIcon />}
+                              {item.title === "Journal" && <JournalIcon />}
+                              {item.title === "Report" && <ReportIcon />}
+                              {item.title === "Announcements" && <AnnouncementsIcon />}
+                            </span>
+                            <span>{item.title}</span>
+                          </Link>
+                        </SidebarMenuButton>
+                      </SidebarMenuItem>
+                    ))}
+                  </SidebarMenu>
+                </SidebarGroupContent>
+              </CollapsibleContent>
+            </SidebarGroup>
+          </Collapsible>
+
+          <Collapsible
+            open={managementOpen}
+            onOpenChange={setManagementOpen}
+            className="w-full transition-all duration-200 ease-in-out"
+          >
+            <SidebarGroup>
+              <CollapsibleTrigger asChild>
+                <SidebarGroupLabel className="flex cursor-pointer items-center justify-between py-3 text-md font-medium hover:bg-gray-100 text-gray-800 rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-opacity-50">
+                  <span className="flex items-center gap-2">
+                    <span>Management</span>
+                  </span>
+                  <span className="transition-transform duration-200">
+                    {managementOpen ? <ChevronUp className="h-5 w-5" /> : <ChevronDown className="h-5 w-5" />}
+                  </span>
+                </SidebarGroupLabel>
+              </CollapsibleTrigger>
+              <CollapsibleContent className="animate-accordion-down">
+                <SidebarGroupContent>
+                  <SidebarMenu>
+                    {managementItems.map((item) => (
+                      <SidebarMenuItem key={item.title}>
+                        <SidebarMenuButton asChild className={cn(
+                            "my-1 py-3",
+                            isActive(item.url) && "!bg-brand-500 !hover:bg-brand-600 !text-white rounded-xl",
+                            !isActive(item.url) && "hover:!bg-brand-100"
+                          )}>
+                          <Link to={item.url} className="flex items-center gap-2">
+                            <span className={cn("mr-2 inline-block h-5 w-5")}>
+                              {item.title === "Contact" && <ContactIcon />}
+                              {item.title === "Note" && <NoteIcon />}
+                              {item.title === "Agenda" && <AgendaIcon />}
+                            </span>
+                            <span>{item.title}</span>
+                          </Link>
+                        </SidebarMenuButton>
+                      </SidebarMenuItem>
+                    ))}
+                  </SidebarMenu>
+                </SidebarGroupContent>
+              </CollapsibleContent>
+            </SidebarGroup>
+          </Collapsible>
+        </SidebarContent>
+      )}
     </Sidebar>
   )
 }
 
-// Custom icons to match the design
 function BuildingIcon() {
   return (
     <svg

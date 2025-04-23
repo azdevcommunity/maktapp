@@ -13,6 +13,7 @@ module.exports = {
   			sm: 'calc(var(--radius) - 4px)'
   		},
   		colors: {
+			'green': '#34C759',
   			'brand': {
   				'900': '#044342',
   				'800': '#065C5A',

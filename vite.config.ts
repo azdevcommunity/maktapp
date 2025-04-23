@@ -9,5 +9,14 @@ export default defineConfig({
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
+  },
+  server: {
+    proxy: {
+      '/v1': {
+        target: 'https://api-demo.maktapp.az',
+        changeOrigin: true,
+        secure: false,
+      }
+    }
   }
 })
