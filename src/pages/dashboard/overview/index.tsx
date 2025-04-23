@@ -2,7 +2,6 @@ import { StatsCard } from "@/components/stats-card";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { useState } from "react";
-import { Calendar, Filter} from "lucide-react";
 import RefreshIcon from "@/components/icons/RefreshIcon";
 import FilterIcon from "@/components/icons/FilterIcon";
 import CalendarIcon from "@/components/icons/CalendarIcon";
