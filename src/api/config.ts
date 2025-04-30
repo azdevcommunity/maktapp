@@ -8,5 +8,8 @@ export const API_BASE_URL = import.meta.env.PROD
 export const endpoints = {
   auth: {
     login: '/v1/auth',
+  },
+  user: {
+    profile: '/v1/my/profile',
   }
 }; 

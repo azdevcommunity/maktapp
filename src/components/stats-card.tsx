@@ -101,7 +101,7 @@ export function StatsCard({ title, leftSection, rightSection }: StatsCardProps) 
 
     return (
         <Card
-            className={`relative w-full max-w-xl border max-h-96 !rounded-3xl cursor-pointer transition-colors duration-200 
+            className={`relative w-full max-w-3xl border max-h-96 !rounded-3xl cursor-pointer transition-colors duration-200 
                 ${isClicked ? "bg-brand-100 border-brand-300" : "bg-gray-100"}`}
             onClick={handleClick}
         >

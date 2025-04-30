@@ -1,0 +1,214 @@
+{
+  "lessonSchedule": [
+    {
+      "lessonNumber": 1,
+      "timeSlot": "08:30-09:00",
+      "data": [
+        {
+          "class": "1 A",
+          "entryTime": "20:02",
+          "discipline": "Chemistry",
+          "teacher": { "name": "əhmədov Qabil" },
+          "attendance": 100,
+          "hasLessonPlan": true,
+          "hasOnlineLesson": true,
+          "hasOnlineResources": true
+        },
+        {
+          "class": "1 A",
+          "entryTime": "20:02",
+          "discipline": "Chemistry",
+          "teacher": { "name": "əhmədov Qabil" },
+          "attendance": 100,
+          "hasLessonPlan": true,
+          "hasOnlineLesson": false,
+          "hasOnlineResources": false
+        },
+        {
+          "class": "1 A",
+          "entryTime": "20:02",
+          "discipline": "Chemistry",
+          "teacher": { "name": "əhmədov Qabil" },
+          "attendance": 100,
+          "hasLessonPlan": true,
+          "hasOnlineLesson": true,
+          "hasOnlineResources": true
+        },
+        {
+          "class": "1 A",
+          "entryTime": "20:02",
+          "discipline": "Chemistry",
+          "teacher": { "name": "əhmədov Qabil" },
+          "attendance": 100,
+          "hasLessonPlan": true,
+          "hasOnlineLesson": true,
+          "hasOnlineResources": true
+        },
+        {
+          "class": "1 A",
+          "entryTime": "20:02",
+          "discipline": "Chemistry",
+          "teacher": { "name": "əhmədov Qabil" },
+          "attendance": 100,
+          "hasLessonPlan": true,
+          "hasOnlineLesson": true,
+          "hasOnlineResources": true
+        },
+        {
+          "class": "1 A",
+          "entryTime": "20:02",
+          "discipline": "Chemistry",
+          "teacher": { "name": "əhmədov Qabil" },
+          "attendance": 100,
+          "hasLessonPlan": false,
+          "hasOnlineLesson": true,
+          "hasOnlineResources": true
+        },
+        {
+          "class": "1 A",
+          "discipline": "Chemistry",
+          "teacher": { "name": "əhmədov Qabil" },
+          "isSpecial": true
+        }
+      ]
+    },
+    {
+      "lessonNumber": 2,
+      "timeSlot": "09:10-10:00",  
+      "data": [
+        {
+          "class": "1 A",
+          "entryTime": "20:02",
+          "discipline": "Chemistry",
+          "teacher": { "name": "əhmədov Qabil" },
+          "attendance": 100,
+          "hasLessonPlan": true,
+          "hasOnlineLesson": true,
+          "hasOnlineResources": true
+        },
+        {
+          "class": "1 A",
+          "entryTime": "20:02",
+          "discipline": "Chemistry",
+          "teacher": { "name": "əhmədov Qabil" },
+          "attendance": 100,
+          "hasLessonPlan": true,
+          "hasOnlineLesson": true,
+          "hasOnlineResources": true
+        },
+        {
+          "class": "1 A",
+          "entryTime": "20:02",
+          "discipline": "Chemistry",
+          "teacher": { "name": "əhmədov Qabil" },
+          "attendance": 100,
+          "hasLessonPlan": true,
+          "hasOnlineLesson": true,
+          "hasOnlineResources": true
+        },
+        {
+          "class": "1 A",
+          "entryTime": "20:02",
+          "discipline": "Chemistry",
+          "teacher": { "name": "əhmədov Qabil" },
+          "attendance": 100,
+          "hasLessonPlan": true,
+          "hasOnlineLesson": true,
+          "hasOnlineResources": true
+        },
+        {
+          "class": "1 A",
+          "entryTime": "20:02",
+          "discipline": "Chemistry",
+          "teacher": { "name": "əhmədov Qabil" },
+          "attendance": 100,
+          "hasLessonPlan": true,
+          "hasOnlineLesson": true,
+          "hasOnlineResources": true
+        },
+        {
+          "class": "1 A",
+          "discipline": "Chemistry",
+          "teacher": { "name": "əhmədov Qabil" },
+          "isSpecial": true
+        }
+      ]
+    },
+    {
+      "lessonNumber": 3,
+      "timeSlot": "10:10-11:00",
+      "data": [
+        {
+          "class": "1 A",
+          "entryTime": "20:02",
+          "discipline": "Chemistry",
+          "teacher": { "name": "əhmədov Qabil" },
+          "attendance": 100,
+          "hasLessonPlan": true,
+          "hasOnlineLesson": true,
+          "hasOnlineResources": true
+        },
+        {
+          "class": "1 A",
+          "entryTime": "20:02",
+          "discipline": "Chemistry",
+          "teacher": { "name": "əhmədov Qabil" },
+          "attendance": 100,
+          "hasLessonPlan": true,
+          "hasOnlineLesson": true,
+          "hasOnlineResources": true
+        },
+        {
+          "class": "1 A",
+          "entryTime": "20:02",
+          "discipline": "Chemistry",
+          "teacher": { "name": "əhmədov Qabil" },
+          "attendance": 100,
+          "hasLessonPlan": true,
+          "hasOnlineLesson": true,
+          "hasOnlineResources": true
+        },
+        {
+          "class": "1 A",
+          "entryTime": "20:02",
+          "discipline": "Chemistry",
+          "teacher": { "name": "əhmədov Qabil" },
+          "attendance": 100,
+          "hasLessonPlan": true,
+          "hasOnlineLesson": true,
+          "hasOnlineResources": true
+        },
+        {
+          "class": "1 A",
+          "entryTime": "20:02",
+          "discipline": "Chemistry",
+          "teacher": { "name": "əhmədov Qabil" },
+          "attendance": 100,
+          "hasLessonPlan": true,
+          "hasOnlineLesson": true,
+          "hasOnlineResources": true
+        },
+        {
+          "class": "1 A",
+          "entryTime": "20:02",
+          "discipline": "Chemistry",
+          "teacher": { "name": "əhmədov Qabil" },
+          "attendance": 100,
+          "hasLessonPlan": true,
+          "hasOnlineLesson": true,
+          "hasOnlineResources": true
+        },
+        {
+          "class": "1 A",
+          "entryTime": "20:02",
+          "discipline": "Chemistry",
+          "teacher": { "name": "əhmədov Qabil" },
+          "attendance": 100,
+          "hasLessonPlan": true,
+          "hasOnlineLesson": true,
+          "hasOnlineResources": true
+        }
+      ]
+    }
+  ]
+} 

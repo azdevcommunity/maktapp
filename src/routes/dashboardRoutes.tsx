@@ -11,6 +11,8 @@ const Loading = () => <div className="flex justify-center items-center h-64">Loa
 // Lazy loaded components
 const DashboardSettings = lazy(() => import('../pages/dashboard/settings'));
 
+
+
 // Dashboard routes - this is a top-level route
 const dashboardRoutes: RouteObject = {
   path: 'dashboard',
@@ -28,6 +30,7 @@ const dashboardRoutes: RouteObject = {
         </Suspense>
       ),
     },
+    
     // Example of using the createLazyRoute utility for future routes
     // createLazyRoute({
     //   path: 'reports',

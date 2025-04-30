@@ -3,8 +3,16 @@ export interface LoginRequest {
   password: string;
 }
 
+export interface UserProfile {
+  id: string;
+  name: string;
+  email: string;
+  username: string;
+  roles: string[];
+}
+
 export interface LoginResponse {
-  token: string;
+  accessToken: string;
   user: {
     id: string;
     username: string;
@@ -14,7 +22,7 @@ export interface LoginResponse {
 }
 
 export interface AuthState {
-  user: LoginResponse['user'] | null;
+  user: UserProfile | null;
   token: string | null;
   isAuthenticated: boolean;
   isLoading: boolean;

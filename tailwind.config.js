@@ -14,6 +14,19 @@ module.exports = {
   		},
   		colors: {
 			'green': '#34C759',
+			'warning': {
+				'200': '#FEDF89',
+				'100': '#FEF0C7',
+				'50': '#FFF6DC',
+			},
+			'error': {
+				'500': '#F04438',
+				'100': '#FEE4E2',
+			},
+			'blue': {
+				'100': '#B9DAFF',
+				'50': '#E1F1FF',
+			},
   			'brand': {
   				'900': '#044342',
   				'800': '#065C5A',
@@ -25,10 +38,21 @@ module.exports = {
   				'200': '#B3E7E3',
   				'100': '#D9F3F1'
   			},
+			"success": {
+				'500': '#17B26A',
+				'100': '#DCFAE6',
+			},
+			"chart-dot": {
+				"green": "#00BC55",
+				"red": "#FF3A3A"
+			},
   			'gray': {
   				'900': '#161B26',
 				'800': '#1F242F',
-  				'700': '#333741'
+  				'700': '#333741',
+				'200': '#E7E8EA',
+				'100': '#F3F4F6',
+				'50': '#F9FAFB'
   			},
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',

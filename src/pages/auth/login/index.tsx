@@ -4,18 +4,30 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
-import { useLoginMutation } from '@/api/slices/auth/AuthApiSlice';
-import { useDispatch } from 'react-redux';
-import { loginSuccess, loginFailure } from '@/api/slices/auth/AuthSlice';
+import { useLoginMutation, authApiSlice } from '@/api/slices/auth/AuthApiSlice';
+import { useAppDispatch } from '@/api/hooks';
+import { loginSuccess, loginFailure, profileSuccess, profileFailure } from '@/api/slices/auth/AuthSlice';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   
   const [login, { isLoading }] = useLoginMutation();
+
+  const fetchUserProfile = async () => {
+    try {
+      const result = await dispatch(authApiSlice.endpoints.getProfile.initiate());
+      const profileData = result.data;
+      if (profileData) {
+        dispatch(profileSuccess(profileData));
+      }
+    } catch (error) {
+      dispatch(profileFailure(error instanceof Error ? error.message : 'Failed to fetch profile'));
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,6 +35,8 @@ const Login = () => {
     try {
       const response = await login({ username, password }).unwrap();
       dispatch(loginSuccess(response));
+      // After successful login, fetch user profile
+      await fetchUserProfile();
       navigate('/dashboard');
     } catch (error) {
       dispatch(loginFailure(error instanceof Error ? error.message : 'Login failed'));

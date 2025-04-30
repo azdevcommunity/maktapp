@@ -92,15 +92,15 @@ export function AppSidebar({ collapsed = true, onToggle, ...props }: AppSidebarP
 
   return (
     <Sidebar {...props} className={cn(
-      "border-r transition-all duration-300 ease-in-out relative",
+      "border-r transition-all duration-300 ease-in-out h-screen overflow-y-auto",
       collapsed ? "min-w-[70px] w-[70px]" : "min-w-[250px] w-[250px]"
     )}>
       <button 
         onClick={onToggle}
         aria-label="Toggle Sidebar" 
         title="Toggle Sidebar"
-        className={`absolute inset-y-0 z-20 hidden w-4 -right-4 -translate-x-1/2 transition-all ease-linear 
-                 after:absolute after:inset-y-0 after:left-1/2 after:w-[2px] hover:after:bg-gray-300
+        className={`absolute inset-y-0 z-20 hidden w-3.5 -right-4 -translate-x-1/2 transition-all ease-linear 
+                 after:absolute after:inset-y-0 after:left-1/2 after:w-[2px] hover:bg-gray-300
                  sm:flex ${collapsed ? 'cursor-e-resize' : 'cursor-w-resize'}`}
       ></button>
 

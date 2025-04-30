@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { API_BASE_URL, endpoints } from '@/api/config';
-import { LoginRequest, LoginResponse } from '@/api/models/AuthApiModel';
+import { LoginRequest, LoginResponse, UserProfile } from '@/api/models/AuthApiModel';
 
 // Determine if credentials should be 'include' (development) or 'same-origin' (production)
 // Using 'include' in production can cause CORS issues when the domains differ
@@ -38,9 +38,18 @@ export const authApiSlice = createApi({
         body: credentials,
       }),
     }),
+    getProfile: builder.query<UserProfile, void>({
+      query: () => ({
+        url: endpoints.user.profile,
+        method: 'GET',
+      }),
+      keepUnusedDataFor: 3600,
+      providesTags: ['Auth'],
+    }),
   }),
 });
 
 export const {
   useLoginMutation,
+  useGetProfileQuery,
 } = authApiSlice; 

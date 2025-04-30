@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { LoginResponse, AuthState } from '@/api/models/AuthApiModel';
+import { LoginResponse, AuthState, UserProfile } from '@/api/models/AuthApiModel';
 
 const initialState: AuthState = {
   user: null,
@@ -20,13 +20,19 @@ const authSlice = createSlice({
     loginSuccess: (state, action: PayloadAction<LoginResponse>) => {
       state.isLoading = false;
       state.isAuthenticated = true;
-      state.user = action.payload.user;
-      state.token = action.payload.token;
+      state.token = action.payload.accessToken;
+      // We'll fetch complete profile data separately
       
-      localStorage.setItem('token', action.payload.token);
+      localStorage.setItem('token', action.payload.accessToken);
     },
     loginFailure: (state, action: PayloadAction<string>) => {
       state.isLoading = false;
+      state.error = action.payload;
+    },
+    profileSuccess: (state, action: PayloadAction<UserProfile>) => {
+      state.user = action.payload;
+    },
+    profileFailure: (state, action: PayloadAction<string>) => {
       state.error = action.payload;
     },
     logout: (state) => {
@@ -39,5 +45,12 @@ const authSlice = createSlice({
   },
 });
 
-export const { loginStart, loginSuccess, loginFailure, logout } = authSlice.actions;
+export const { 
+  loginStart, 
+  loginSuccess, 
+  loginFailure, 
+  profileSuccess, 
+  profileFailure, 
+  logout 
+} = authSlice.actions;
 export default authSlice.reducer; 
